@@ -9,7 +9,7 @@ type FlowStep = {
   criteria?: string[]; // Used specifically to group multiple filter criteria into a single node
 };
 
-const PROVENANCE_DATA: Record<string, { title: string, explanation: string, steps: FlowStep[] }> = {
+const PROVENANCE_DATA: Record<string, { title: string, explanation: string, note?: string, steps: FlowStep[] }> = {
   cohort: {
     title: 'Base Clinical Cohort',
     explanation: 'The baseline clinical cohort used for the Projects, Clinical Response, and Demographics analyses. These filters are applied universally before grouping.',
@@ -20,7 +20,8 @@ const PROVENANCE_DATA: Record<string, { title: string, explanation: string, step
   },
   metric: {
     title: 'Critical Specific Metric',
-    explanation: 'Calculates the average absolute B Cell count specifically for Male subjects with Melanoma who responded favorably (Response=yes) at Baseline (time=0). Note: This explicitly includes all treatments and all sample types.',
+    explanation: 'Calculates the average absolute B Cell count specifically for Male subjects with Melanoma who responded favorably (Response=yes) at Baseline (time=0).',
+    note: 'Note: This explicitly includes all treatments and all sample types.',
     steps: [
       { type: 'source', label: 'Load all Subjects, Samples, and Cell Counts' },
       { type: 'filter', label: 'Apply Strict Clinical Filters', criteria: ['Condition = Melanoma', 'Time = 0 (Baseline)', 'Sex = M (Male)', 'Response = YES', 'Cell Type = B Cell'] },
@@ -252,6 +253,11 @@ export default function SubsetAnalysis() {
               <div style={{ color: '#1e293b', fontSize: '0.95rem', lineHeight: 1.6 }}>
                 <p style={{ margin: '0 0 2rem 0' }}>
                   {activeMetadata.explanation}
+                  {activeMetadata.note && (
+                    <span style={{ display: 'block', marginTop: '0.5rem', fontStyle: 'italic', color: '#64748b' }}>
+                      {activeMetadata.note}
+                    </span>
+                  )}
                 </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem 0' }}>
