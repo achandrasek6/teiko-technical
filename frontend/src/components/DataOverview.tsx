@@ -462,13 +462,29 @@ export default function DataOverview() {
                 e.api.setFilterModel(model);
               } catch (err) {}
             }
+
+            // Restore pagination page from URL
+            const pageParam = getUrlParams().get('page');
+            if (pageParam) {
+              const pageNum = parseInt(pageParam, 10) - 1;
+              if (pageNum > 0) {
+                setTimeout(() => e.api.paginationGoToPage(pageNum), 50);
+              }
+            }
           }}
           pagination={true} 
           paginationPageSize={initialPageSize}
           paginationPageSizeSelector={[15, 50, 100, 1000]}
           onPaginationChanged={(e) => {
             const ps = e.api.paginationGetPageSize();
-            updateUrl({ pageSize: ps === 15 ? null : String(ps) });
+            const cp = e.api.paginationGetCurrentPage();
+            // Need to make sure we don't spam URL updates if grid isn't fully ready
+            if (e.api.paginationGetTotalPages() > 0) {
+              updateUrl({ 
+                pageSize: ps === 15 ? null : String(ps),
+                page: cp === 0 ? null : String(cp + 1)
+              });
+            }
           }}
           overlayNoRowsTemplate="<div style='padding: 3rem; color: #64748b; font-size: 1.1rem; text-align: center;'><div style='font-size: 2rem; margin-bottom: 0.5rem;'>🔍</div>No matching records found.<br/><span style='font-size: 0.9rem;'>Try adjusting or clearing your filters.</span></div>"
           defaultColDef={defaultColDef}
