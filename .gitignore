@@ -1,0 +1,10 @@
+venv/
+.nextflow/
+.nextflow.log*
+__pycache__/
+*.pyc
+teiko.db
+frontend/node_modules/
+frontend/dist/
+.env
+outputs/
