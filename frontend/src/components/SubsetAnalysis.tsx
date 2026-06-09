@@ -20,10 +20,10 @@ const PROVENANCE_DATA: Record<string, { title: string, explanation: string, step
   },
   metric: {
     title: 'Critical Specific Metric',
-    explanation: 'Calculates the average absolute B Cell count specifically for Male subjects with Melanoma who responded favorably (Response=yes) to Miraclib at Baseline (time=0).',
+    explanation: 'Calculates the average absolute B Cell count specifically for Male subjects with Melanoma who responded favorably (Response=yes) at Baseline (time=0). Note: This explicitly includes all treatments and all sample types.',
     steps: [
       { type: 'source', label: 'Load all Subjects, Samples, and Cell Counts' },
-      { type: 'filter', label: 'Apply Strict Clinical Filters', criteria: ['Condition = Melanoma', 'Treatment = Miraclib', 'Sample Type = PBMC', 'Time = 0 (Baseline)', 'Sex = M (Male)', 'Response = YES', 'Cell Type = B Cell'] },
+      { type: 'filter', label: 'Apply Strict Clinical Filters', criteria: ['Condition = Melanoma', 'Time = 0 (Baseline)', 'Sex = M (Male)', 'Response = YES', 'Cell Type = B Cell'] },
       { type: 'calculate', label: 'Calculate Average Absolute Cell Count' }
     ]
   }
