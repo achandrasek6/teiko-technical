@@ -463,13 +463,10 @@ export default function DataOverview() {
               } catch (err) {}
             }
 
-            // Restore pagination page from URL
-            const pageParam = getUrlParams().get('page');
-            if (pageParam) {
-              const pageNum = parseInt(pageParam, 10) - 1;
-              if (pageNum > 0) {
-                setTimeout(() => e.api.paginationGoToPage(pageNum), 50);
-              }
+          }}
+          initialState={{
+            pagination: {
+              page: getUrlParams().get('page') ? parseInt(getUrlParams().get('page') || '1', 10) - 1 : 0
             }
           }}
           pagination={true} 
