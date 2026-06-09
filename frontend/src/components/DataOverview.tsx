@@ -320,7 +320,7 @@ export default function DataOverview() {
     },
     { field: 'total_count', headerName: 'Total Count', headerTooltip: 'Total number of cells in the parent or root population', filter: 'agNumberColumnFilter', flex: 1, type: 'numericColumn', valueFormatter: (p: any) => p.value?.toLocaleString() },
     { field: 'count', headerName: 'Cell Count', headerTooltip: 'Absolute number of cells identified in this specific population', filter: 'agNumberColumnFilter', flex: 1, type: 'numericColumn', valueFormatter: (p: any) => p.value?.toLocaleString() },
-    { field: 'percentage', headerName: 'Percentage', headerTooltip: 'Relative frequency of this population as a percentage of the total count', filter: 'agNumberColumnFilter', flex: 1, type: 'numericColumn', valueFormatter: (p: any) => `${p.value?.toFixed(2)}%` }
+    { field: 'percentage', headerName: 'Percentage', headerTooltip: 'Relative frequency of this population as a percentage of the total count', filter: 'agNumberColumnFilter', flex: 1, type: 'numericColumn', valueFormatter: (p: any) => `${p.value?.toFixed(2)}%`, filterValueGetter: (p: any) => p.data && p.data.percentage != null ? Number(Number(p.data.percentage).toFixed(2)) : null }
   ], []);
 
   if (loading) return (
