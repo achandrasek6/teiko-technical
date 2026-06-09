@@ -220,7 +220,7 @@ export default function StatisticalAnalysis() {
               </h2>
               <div 
                 style={{display: 'flex', justifyContent: 'center'}}
-                title="Pinch to zoom in. Double click to zoom out (to full)."
+                title="Click and drag to zoom in. Double click to reset zoom."
               >
                 <Plot
                   data={[
