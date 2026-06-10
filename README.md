@@ -74,7 +74,7 @@ Rather than hardcoding a simple T-test, the backend implements a robust, dynamic
 * **Contextual UX & Discoverability:** Strategic hovertips and informational tooltips were implemented throughout the UI to explain complex metrics, provide statistical context, and guide users through the interactive elements, ensuring the application is intuitive even for non-technical users.
 * **Enterprise-Grade Datagrids:** AG-Grid was implemented to provide power-user functionality, including complex column filtering, multi-column sorting, and column resizing.
 * **State Persistence:** Custom hooks were built to seamlessly sync grid layouts (like user-adjusted column widths) with the browser's `localStorage`, ensuring a persistent user experience across sessions.
-* **Interactive EDA:** Dynamic Plotly.js visualizations allow scientists to interactively explore the data distributions (zooming, panning, and hovering for precise statistical summaries) rather than just looking at static image exports.
+* **Interactive EDA:** Dynamic Plotly.js visualizations allow scientists to interactively explore the data distributions (zooming, panning, and dropdown for precise statistical summaries) rather than just looking at static image exports.
 
 This decoupled architecture was chosen because it mirrors how real enterprise clinical software is built. The backend python pipeline can crunch massive datasets and execute complex bio-statistics offline, while the React dashboard provides a frictionless, lightning-fast UI to explore the results interactively.
 
